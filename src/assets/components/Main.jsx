@@ -18,7 +18,6 @@ function Main() {
             })
         .catch(err => {
             console.error("Failed to get image!", err);
-            setIsLoading(false)
         })
         ;
     }
