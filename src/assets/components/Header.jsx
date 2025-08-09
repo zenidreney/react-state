@@ -3,7 +3,7 @@ function Header() {
     
         <header>
             
-            <h1>Draw on a custom pic</h1>
+            <h1>React State and Side-Effect Study Project</h1>
             
         </header>
         
