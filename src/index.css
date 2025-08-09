@@ -31,10 +31,25 @@ main {
   gap: 1em;
 }
 
-main img {
-  width: 50%;
+.canvas-container {
+  position: relative;
+  width: 250px;
+  height: 350px;
 }
 
 canvas {
   border: 1px solid black;
+}
+
+canvas,
+.canvas-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 350px;
+}
+
+canvas {
+  z-index: 1;
 }

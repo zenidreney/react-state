@@ -13,24 +13,43 @@ function Main() {
     const [drawColor, setDrawColor] = React.useState("#272727")
 
     const canvasRef = React.useRef(null);
+    const canvasContainerRef = React.useRef(null);
+    console.log(canvasContainerRef);
 
+    
+    function getBrushPosition(e) {
+        const canvasContainer = canvasContainerRef.current.getBoundingClientRect();
+        return {
+            x: e.clientX - canvasContainer.left,
+            y: e.clientY - canvasContainer.top
+        }
+    }
+    
+    
     /*Handlers*/
 
     function handleMouseDown(e) {
         setStartDraw(true);
-
+        
+        const brushPosition = getBrushPosition(e);
+        //console.log(brushPosition)
+        
+        
         const pointer = canvasRef.current.getContext("2d");
         pointer.strokeStyle = drawColor;
 
         pointer.beginPath();
-        pointer.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+        pointer.moveTo(brushPosition.x, brushPosition.y);
     }
 
     function handleMouseMove(e) {
         if (!startDraw) return;
+        
+        const brushPosition = getBrushPosition(e);
+        //console.log(brushPosition);
         const pointer = canvasRef.current.getContext("2d");
         pointer.strokeStyle = drawColor;
-        pointer.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+        pointer.lineTo(brushPosition.x, brushPosition.y);
         //console.log(startDraw, pointer);
         pointer.stroke();
     }
@@ -78,17 +97,21 @@ function Main() {
 
             <input type="color" value={drawColor} onChange={(e) => setDrawColor(e.target.value)} />
             <button onClick={handleImageBtn}>Change Image</button>
-            <canvas
-                ref={canvasRef}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={() => setStartDraw(false)}
-            />
-
-
-            {isLoading && <p>LOADING</p>}
-
-            <img src={imgUrl} />
+            <div ref={canvasContainerRef} className="canvas-container">
+                <canvas
+                    ref={canvasRef}
+                    width={250}
+                    height={350}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={() => setStartDraw(false)}
+                />
+                
+                
+                {isLoading && <p>LOADING</p>}
+                
+                <img className="canvas-img" src={imgUrl} />
+            </div>
             <button onClick={clearCanvas}>Clear Drawing</button>
         </main>
     );
