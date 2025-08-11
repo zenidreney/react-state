@@ -29,7 +29,7 @@ function Game() {
             return {
                 ...colorsArray,
                 colorValue: randomColor,
-                id: color.id || nanoid(),
+                id: color.id ?? nanoid(),
                 isHeld: color.isHeld ?? false
             };
         });
