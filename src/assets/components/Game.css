@@ -1,5 +1,4 @@
 button {
-  
   cursor: pointer;
 }
 
@@ -18,5 +17,3 @@ button {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-
