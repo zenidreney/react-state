@@ -18,23 +18,44 @@ function Game() {
     //console.log(colorsArray)
 
     const colorBtns = colorsArray.map((color) => (
-        <Color key={color.id} id={color.id} color={color.colorValue} isHeld={color.isHeld} />
+        <Color
+            key={color.id}
+            id={color.id}
+            color={color.colorValue}
+            isHeld={color.isHeld}
+            hold={() => holdColor(color.id)}
+        />
     ));
 
     function mixColors() {
         const mixedColors = colorsArray.map((color) => {
             const rI = Math.floor(Math.random() * baseColors.length);
             const randomColor = baseColors[rI];
-            
-            return {
-                ...colorsArray,
-                colorValue: randomColor,
-                id: color.id ?? nanoid(),
-                isHeld: color.isHeld ?? false
-            };
+
+            if (color.isHeld === false) {
+                return {
+                    ...color,
+                    colorValue: randomColor,
+                };
+            } else {
+                return color
+            }
         });
 
         setColorsArray(mixedColors);
+    }
+
+    function holdColor(id) {
+        setColorsArray((prev) =>
+            prev.map(function (color) {
+                return color.id === id
+                    ? {
+                          ...color,
+                          isHeld: true
+                      }
+                    : color;
+            })
+        );
     }
 
     return (
