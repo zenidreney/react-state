@@ -2,29 +2,39 @@ import { useState } from "react";
 import Color from "./Color";
 import { nanoid } from "nanoid";
 
+const baseColors = ["blue", "red", "black", "white", "green", "pink", "darkviolet", "khaki"];
+
 function Game() {
     const [colorsArray, setColorsArray] = useState(() =>
-        ["blue", "red", "black", "white", "green", "pink", "darkviolet", "khaki"].map((color) => {
+        baseColors.map((color) => {
             return {
                 id: nanoid(),
-                colorValue: color
+                colorValue: color,
+                isHeld: false
             };
         })
     );
-    
+
     //console.log(colorsArray)
 
-    const colorBtns = colorsArray.map((color) => <Color key={color.id} id={color.id} color={color.colorValue} />);
+    const colorBtns = colorsArray.map((color) => (
+        <Color key={color.id} id={color.id} color={color.colorValue} isHeld={color.isHeld} />
+    ));
 
     function mixColors() {
-        const copyArray = [...colorsArray];
+        const mixedColors = colorsArray.map((color) => {
+            const rI = Math.floor(Math.random() * baseColors.length);
+            const randomColor = baseColors[rI];
+            
+            return {
+                ...colorsArray,
+                colorValue: randomColor,
+                id: color.id || nanoid(),
+                isHeld: color.isHeld ?? false
+            };
+        });
 
-        for (let i = copyArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [copyArray[i], copyArray[j]] = [copyArray[j], copyArray[i]];
-        }
-        console.log(copyArray);
-        setColorsArray(copyArray);
+        setColorsArray(mixedColors);
     }
 
     return (

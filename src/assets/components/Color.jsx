@@ -1,8 +1,13 @@
 import "./Game.css";
 
 function Color(props) {
-    //console.log(props)
-    return <button className="color-btn" style={{ backgroundColor: props.color }} />;
+    
+    const styles = {
+        backgroundColor: props.color,
+        opacity: props.isHeld && 0.5
+    }
+    
+    return <button className="color-btn" style={styles} />;
 }
 
 export default Color;
