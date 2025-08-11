@@ -1,15 +1,18 @@
 import Header from "../src/assets/components/Header"
-import Main from "../src/assets/components/Main"
+import Canvas from "../src/assets/components/Canvas"
+import Game from "../src/assets/components/Game"
+
 
 console.log(Header)
 
 function App() {
 
   return (
-    <>
+    <main>
       <Header />
-      <Main />
-    </>
+      <Canvas />
+      <Game />
+    </main>
   )
 }
 export default App

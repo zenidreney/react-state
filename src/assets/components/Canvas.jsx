@@ -1,7 +1,7 @@
 import React from "react";
 
-function Main() {
-    console.log("Main Rendering");
+function Canvas() {
+    //console.log("Main Rendering");
 
     /*States and Refs*/
 
@@ -14,7 +14,7 @@ function Main() {
 
     const canvasRef = React.useRef(null);
     const canvasContainerRef = React.useRef(null);
-    console.log(canvasContainerRef);
+    //console.log(canvasContainerRef);
 
     
     function getBrushPosition(e) {
@@ -91,7 +91,7 @@ function Main() {
     /*To render*/
 
     return (
-        <main>
+        <article>
             <p>{getText} </p>
             <input type="text" name="text" placeholder="Type something..." onChange={handleTextInput} />
 
@@ -113,8 +113,8 @@ function Main() {
                 <img className="canvas-img" src={imgUrl} />
             </div>
             <button onClick={clearCanvas}>Clear Drawing</button>
-        </main>
+        </article>
     );
 }
 
-export default Main;
+export default Canvas;

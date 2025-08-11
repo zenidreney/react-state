@@ -1,0 +1,48 @@
+.color-btn {
+  width: 120px;
+  height: 120px;
+  background-color: red;
+  border: 0.5px solid #232323;
+  border-radius: 4px;
+}
+
+.color-container {
+  display: flex;
+  gap: 1em;
+  max-width: 600px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.blue {
+  background-color: #0a0aea;
+}
+
+.green {
+  background-color: #08aa08;
+}
+
+.brown {
+  background-color: #ac1a1a;
+}
+
+.violet {
+  background-color: white;
+}
+
+.khaki {
+  background-color: #e7b966;
+}
+
+.black {
+  background-color: #272727;
+}
+
+.white {
+  background-color: #bebec4;
+}
+
+.pink {
+  background-color: #f9889c;
+}
+
